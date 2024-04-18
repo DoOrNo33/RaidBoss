@@ -580,6 +580,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smallSeed: {fileID: 8539269424940168977, guid: 5756fa4f6f159904ba6dc29076672561, type: 3}
+  bigSeed: {fileID: 8539269424940168977, guid: 235c3f65175f09f4db0a0216b63cb424, type: 3}
   timeTxt: {fileID: 1618708027}
 --- !u!1 &1517296828
 GameObject:

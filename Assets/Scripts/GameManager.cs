@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using System.Linq;
+
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
     public GameObject smallSeed;
+    public GameObject bigSeed;
     public Text timeTxt;
 
     float sec = 0f;
@@ -19,6 +22,9 @@ public class GameManager : MonoBehaviour
     float seedRegen = 0f;
     bool seedGen = false;
     int seedAmount = 0;
+
+    int[] seedsX = { 7, 14, -7, -14, 0, 0, 0, 0 };
+    int[] seedsY = { 0, 0, 0, 0, 7, 14, -7, -14 };
 
 
     private void Awake()
@@ -51,6 +57,7 @@ public class GameManager : MonoBehaviour
         // [7, 0], [14, 0], [-7, 0], [-14, 0], [0, 7], [0, 14], [0, -7], [0, -14]
 
 
+
         // ¾¾¾Ñ »ý¼º ¸ÞÄ¿´ÏÁò
         seedRegen += Time.deltaTime;
         if (seedRegen > 5f && !seedGen)
@@ -65,10 +72,25 @@ public class GameManager : MonoBehaviour
     }
     public void Plant()
     {
-        for (seedAmount = -14; seedAmount < 15; seedAmount += 7)
+        int j = UnityEngine.Random.Range(0, 8);
+
+        for (int i = 0; i < 8; i++)
         {
-            GameObject newSeed = Instantiate(smallSeed);
-            newSeed.transform.position = new Vector3(7f, 0, 0);
+            if (i != j)
+            {
+                GameObject newSeed = Instantiate(smallSeed);
+                int x = seedsX[i];
+                int y = seedsY[i];
+                newSeed.transform.position = new Vector2(x, y);
+            }
+            else
+            {
+                GameObject newSeedB = Instantiate(bigSeed);
+                int x = seedsX[i];
+                int y = seedsY[i];
+                newSeedB.transform.position = new Vector2(x, y);
+            }
+
         }
 
     }
